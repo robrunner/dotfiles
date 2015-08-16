@@ -13,7 +13,7 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'  "automatically toggle relative and a
 Plugin 'kien/ctrlp.vim'  "fuzzy finder
 Plugin 'LaTeX-Box-Team/LaTeX-Box' "latex box
 Plugin 'easymotion/vim-easymotion' "easymotion
-Plugin 'scrooloose/syntastic' "syntax checking
+Plugin 'bling/vim-airline' "status bar
 "vundle end
 
 filetype plugin indent on
@@ -21,6 +21,16 @@ filetype plugin indent on
 "nerdtree start
 map <F5> :NERDTreeToggle<CR>
 "nerdtree end
+
+"airline start
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+set laststatus=2
+"airline end
 
 set clipboard=unnamed "p pastes the clipboard
 syntax enable  "Enables syntax highlighting for programming languages
