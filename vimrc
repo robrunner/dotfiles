@@ -36,6 +36,7 @@ set number  "Enables line numbering
 set relativenumber
 set smarttab  "Improves tabbing
 set shiftwidth=4  "Assists code formatting
+set  t_Co=256
 set background=dark
 colorscheme solarized
 

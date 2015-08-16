@@ -37,3 +37,4 @@ PS1='[\u@\h \W]\$ '
 export LIBVA_DRIVER_NAME=vdpau
 export VDPAU_DRIVER=radeonsi
 export EDITOR=vim
+export TERM=xterm-256color
