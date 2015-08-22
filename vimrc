@@ -14,6 +14,7 @@ Plugin 'kien/ctrlp.vim'  "fuzzy finder
 Plugin 'LaTeX-Box-Team/LaTeX-Box' "latex box
 Plugin 'easymotion/vim-easymotion' "easymotion
 Plugin 'bling/vim-airline' "status bar
+Plugin 'ntpeters/vim-better-whitespace' "highlight and strip trailing whitespace
 "vundle end
 
 filetype plugin indent on
@@ -80,7 +81,7 @@ nnoremap k gk
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
-nnoremap <Leader>e :tabe 
+nnoremap <Leader>e :tabe
 nnoremap <Leader>m :!clear<CR>:w<CR>:make<CR>
 nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>a @
