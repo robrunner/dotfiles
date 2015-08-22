@@ -15,6 +15,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box' "latex box
 Plugin 'easymotion/vim-easymotion' "easymotion
 Plugin 'bling/vim-airline' "status bar
 Plugin 'ntpeters/vim-better-whitespace' "highlight and strip trailing whitespace
+Plugin 'tpope/vim-obsession' "automate sessions
 "vundle end
 
 filetype plugin indent on
