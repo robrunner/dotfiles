@@ -39,4 +39,5 @@ export VDPAU_DRIVER=radeonsi
 export EDITOR=vim
 export TERM=xterm-256color
 
+# automatically start tmux-session
 tmux a -t main || tmux new-session -s main
