@@ -82,7 +82,7 @@ nnoremap k gk
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
-nnoremap <Leader>e :tabe
+nnoremap <Leader>e :tabe 
 nnoremap <Leader>m :!clear<CR>:w<CR>:make<CR>
 nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>a @
