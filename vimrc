@@ -75,8 +75,6 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-nmap <Leader><Leader> V
-
 nnoremap j gj
 nnoremap k gk
 nnoremap <Leader>w :w<CR>zz
@@ -118,7 +116,7 @@ nnoremap <Leader>le :LatexErrors<CR>
 nnoremap <Leader>lf :LatexFold<CR>
 nnoremap <Leader>lt :LatexTOCToggle<CR>
 
-imap <buffer> [[ \begin{
-imap <buffer> ]] <Plug>LatexCloseCurEnv
-nmap <buffer> <F3> <Plug>LatexChangeEnv
+inoremap [[ \begin{
+inoremap ]] <esc>o<esc>ml/begin<CR>Nyy'lpkddlcwend<esc>O<esc>:nohl<CR>zzi<space><space><space><space>
+"nmap <buffer> <F3> <Plug>LatexChangeEnv
 "latexbox end
