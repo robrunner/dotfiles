@@ -79,7 +79,7 @@ nmap <Leader><Leader> V
 
 nnoremap j gj
 nnoremap k gk
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>w :w<CR>zz
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader>e :tabe 
@@ -92,8 +92,8 @@ nnoremap cß c$
 vnoremap ß $
 inoremap jk <esc>
 inoremap kj <esc>
-inoremap JK <esc>:w<CR>
-inoremap KJ <esc>:w<CR>
+inoremap JK <esc>:w<CR>zz
+inoremap KJ <esc>:w<CR>zz
 inoremap <F2> {<CR>}<esc>O
 "implement function out of prototype
 inoremap <F12> <esc>A<esc>xo{<CR>}<esc>kkVjj"zyA;<esc>j2ddi
