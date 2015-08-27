@@ -48,7 +48,7 @@ set number  "Enables line numbering
 set relativenumber
 set smarttab  "Improves tabbing
 set shiftwidth=4  "Assists code formatting
-set  t_Co=256
+set t_Co=256
 set background=dark
 colorscheme solarized
 
@@ -60,7 +60,7 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-"--- The following commands make the navigation keys work like standard editors
+"The following commands make the navigation keys work like standard editors
 imap <silent> <Down> <C-o>gj
 imap <silent> <Up> <C-o>gk
 nmap <silent> <Down> gj
@@ -79,10 +79,11 @@ nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>a @
 nnoremap ß $
 nnoremap dß d$
+nnoremap yß y$
 nnoremap cß c$
 vnoremap ß $
-inoremap jk <esc>
-inoremap kj <esc>
+inoremap jk <esc>zz
+inoremap kj <esc>zz
 inoremap JK <esc>:w<CR>zz
 inoremap KJ <esc>:w<CR>zz
 inoremap <F2> {<CR>}<esc>O
