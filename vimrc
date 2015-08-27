@@ -91,7 +91,6 @@ inoremap <F12> <esc>A<esc>xo{<CR>}<esc>kkVjj"zyA;<esc>j2ddi
 nnoremap <Leader>i "zpjo
 
 inoremap (( ();<esc>hi
-nnoremap <leader>s :mksession<CR>
 "--- Ends navigation commands
 map <F9> :tabn<CR>
 map <F8> :tabp<CR>
