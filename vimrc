@@ -82,8 +82,8 @@ nnoremap dß d$
 nnoremap yß y$
 nnoremap cß c$
 vnoremap ß $
-inoremap jk <esc>zz
-inoremap kj <esc>zz
+inoremap jk <esc>
+inoremap kj <esc>
 inoremap JK <esc>:w<CR>zz
 inoremap KJ <esc>:w<CR>zz
 inoremap <F2> {<CR>}<esc>O
