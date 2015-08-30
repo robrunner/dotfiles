@@ -96,6 +96,9 @@ inoremap <F2> {<CR>}<esc>O
 inoremap <F12> <esc>A<esc>xo{<CR>}<esc>kkVjj"zyA;<esc>j2ddi
 nnoremap <Leader>i "zpjo
 
+inoremap <C-f> <esc>bgUlA
+inoremap <C-d> <esc>bgulA
+
 inoremap (( ();<esc>hi
 "--- Ends navigation commands
 map <F9> :tabn<CR>
