@@ -20,24 +20,11 @@ Plugin 'lervag/vimtex' "latex
 Plugin 'Shougo/neocomplete.vim' "neocomplete
 Plugin 'Shougo/neosnippet.vim' "neosnippet
 Plugin 'Shougo/neosnippet-snippets' "neosnippets
-"vundle end
 
 filetype plugin indent on
+"vundle end
 
-"nerdtree start
-map <F5> :NERDTreeToggle<CR>
-"nerdtree end
-
-"airline start
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-
-set laststatus=2
-"airline end
-
+"general
 set clipboard=unnamed "p pastes the clipboard
 syntax enable  "Enables syntax highlighting for programming languages
 set mouse=a  "Allows you to click around the text editor with your mouse to move the cursor
@@ -55,7 +42,6 @@ set shiftwidth=4  "Assists code formatting
 set t_Co=256
 set background=dark
 colorscheme solarized
-
 set foldmethod=manual  "Lets you hide sections of code
 set cursorline
 set lazyredraw
@@ -64,15 +50,18 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+
 "The following commands make the navigation keys work like standard editors
 imap <silent> <Down> <C-o>gj
 imap <silent> <Up> <C-o>gk
 nmap <silent> <Down> gj
 nmap <silent> <Up> gk
 
+"leader
 let mapleader=" "
 let maplocalleader=" "
 
+"normal maps
 nnoremap j gj
 nnoremap k gk
 nnoremap <Leader>w :w<CR>zz
@@ -86,28 +75,50 @@ nnoremap ß $
 nnoremap dß d$
 nnoremap yß y$
 nnoremap cß c$
-vnoremap ß $
+
+"insert maps
+"switch to normal mode with jk
 inoremap jk <esc>
 inoremap kj <esc>
 inoremap JK <esc>:w<CR>zz
 inoremap KJ <esc>:w<CR>zz
+"draw {} quickly
 inoremap <F2> {<CR>}<esc>O
-"implement function out of prototype
-inoremap <F12> <esc>A<esc>xo{<CR>}<esc>kkVjj"zyA;<esc>j2ddi
-nnoremap <Leader>i "zpjo
-
+"make first letter of current word upper-/lowercase
 inoremap <C-f> <esc>bgUlA
 inoremap <C-d> <esc>bgulA
-
+"type (); quickly
 inoremap (( ();<esc>hi
-"--- Ends navigation commands
+
+"visual maps
+vnoremap ß $
+
+"editor controls
 map <F9> :tabn<CR>
 map <F8> :tabp<CR>
-
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+"macros
+"implement function out of prototype
+inoremap <F12> <esc>A<esc>xo{<CR>}<esc>kkVjj"zyA;<esc>j2ddi
+nnoremap <Leader>i "zpjo
+
+"nerdtree start
+map <F5> :NERDTreeToggle<CR>
+"nerdtree end
+
+"airline start
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+set laststatus=2
+"airline end
 
 "latexbox start
 "autocmd BufNewFile,BufRead *.tex set filetype=tex spell spelllang=de_de
