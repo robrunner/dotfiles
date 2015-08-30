@@ -20,6 +20,7 @@ Plugin 'lervag/vimtex' "latex
 Plugin 'Shougo/neocomplete.vim' "neocomplete
 Plugin 'Shougo/neosnippet.vim' "neosnippet
 Plugin 'Shougo/neosnippet-snippets' "neosnippets
+Plugin 'tmux-plugins/vim-tmux' "better tmux.conf editing
 
 filetype plugin indent on
 "vundle end
