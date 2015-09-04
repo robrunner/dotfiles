@@ -26,6 +26,12 @@ filetype plugin indent on
 "vundle end
 
 "general
+set tabstop=8
+set shiftwidth=8
+set softtabstop=8
+set textwidth=80
+set noexpandtab
+
 set clipboard=unnamed "p pastes the clipboard
 syntax enable  "Enables syntax highlighting for programming languages
 set mouse=a  "Allows you to click around the text editor with your mouse to move the cursor
@@ -33,13 +39,13 @@ set showmatch "Highlights matching brackets in programming languages
 set autoindent  "If you're indented, new lines will also be indented
 set smartindent  "Automatically indents lines after opening a bracket in programming languages
 set backspace=2  "This makes the backspace key function like it does in other programs.
-set tabstop=4  "How much space Vim gives to a tab
-set softtabstop=4
-set expandtab
+"set tabstop=4  "How much space Vim gives to a tab
+"set softtabstop=4
+"set expandtab
 set number  "Enables line numbering
 set relativenumber
 set smarttab  "Improves tabbing
-set shiftwidth=4  "Assists code formatting
+"set shiftwidth=4  "Assists code formatting
 set t_Co=256
 set background=dark
 colorscheme solarized
