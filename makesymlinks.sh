@@ -27,5 +27,9 @@ for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
+    sudo rm -f /etc/$file
     sudo ln -s $dir/$file /etc/$file
 done
+
+sudo rm -f /etc/bash.bashrc
+sudo mv /etc/bashrc /etc/bash.bashrc
