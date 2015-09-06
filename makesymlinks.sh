@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc tmux.conf tmux.color.conf"    # list of files/folders to symlink in homedir
+files="bashrc vimrc tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -29,3 +29,5 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+sudo ln -s $dir/tmux.color.conf /etc/tmux.color.conf
