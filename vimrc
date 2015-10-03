@@ -29,7 +29,6 @@ filetype plugin indent on
 set tabstop=8
 set shiftwidth=8
 set softtabstop=8
-set textwidth=80
 set noexpandtab
 
 set clipboard=unnamed "p pastes the clipboard
@@ -219,3 +218,5 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 "neosnippet end
+
+let g:tex_conceal = ""
