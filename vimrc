@@ -83,9 +83,11 @@ nnoremap yß y$
 nnoremap cß c$
 
 "insert maps
-"switch to normal mode with jj
-inoremap jj <esc>
-inoremap JJ <esc>:w<CR>zz
+"switch to normal mode with jk
+inoremap jk <esc>
+inoremap kj <esc>
+inoremap JK <esc>:w<CR>zz
+inoremap KJ <esc>:w<CR>zz
 "draw {} quickly
 inoremap <F2> {<CR>}<esc>O
 "make first letter of current word upper-/lowercase
