@@ -21,10 +21,12 @@ Plugin 'lervag/vimtex' "latex
 "Plugin 'Shougo/neosnippet.vim' "neosnippet
 "Plugin 'Shougo/neosnippet-snippets' "neosnippets
 Plugin 'tmux-plugins/vim-tmux' "better tmux.conf editing
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils' "snipmate
+Plugin 'tomtom/tlib_vim' "snipmate
+Plugin 'garbas/vim-snipmate' "snipmate
+Plugin 'honza/vim-snippets' "snipmate
+Plugin 'ervandew/screen' "screen for R
+Plugin 'vim-scripts/Vim-R-plugin' "R
 
 filetype plugin indent on
 "vundle end
@@ -74,13 +76,14 @@ let maplocalleader=" "
 "normal maps
 nnoremap j gj
 nnoremap k gk
-nnoremap <Leader>w mzgg=G'z:w<CR>zz
+nnoremap <Leader>w :w<CR>zz
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader>e :tabe 
 nnoremap <Leader>m :!clear<CR>:w<CR>:make<CR>
 nnoremap <Leader>n :nohl<CR>
 nnoremap <Leader>a @
+nnoremap <Leader>f mzgg=G'z
 nnoremap ß $
 nnoremap dß d$
 nnoremap yß y$
@@ -90,8 +93,8 @@ nnoremap cß c$
 "switch to normal mode with jk
 inoremap jk <esc>
 inoremap kj <esc>
-inoremap JK <esc>mzgg=G'z:w<CR>zz
-inoremap KJ <esc>mzgg=G'z:w<CR>zz
+inoremap JK <esc>:w<CR>zz
+inoremap KJ <esc>:w<CR>zz
 "draw {} quickly
 inoremap <F2> {<CR>}<esc>O
 "make first letter of current word upper-/lowercase
@@ -123,7 +126,7 @@ map <F5> :NERDTreeToggle<CR>
 "airline start
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 
@@ -150,10 +153,10 @@ let g:vimtex_mappings_enabled = 1
 let g:vimtex_fold_enabled = 0
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
+	let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.tex =
-    \ '\v\\\a*(ref|cite)\a*([^]]*\])?\{([^}]*,)*[^}]*'
+			\ '\v\\\a*(ref|cite)\a*([^]]*\])?\{([^}]*,)*[^}]*'
 "vimtex end
 
 ""neocomplete start
@@ -224,3 +227,15 @@ let g:neocomplete#sources#omni#input_patterns.tex =
 ""neosnippet end
 "
 "let g:tex_conceal = ""
+
+"vim-r
+let g:ScreenImpl = 'Tmux'
+let vimrplugin_screenvsplit = 0 " For vertical tmux split
+let vimrplugin_screenhsplit = 1 " For vertical tmux split
+let g:ScreenShellInitialFocus = 'shell'
+" instruct to use your own .screenrc file
+let g:vimrplugin_noscreenrc = 1
+" For integration of r-plugin with screen.vim
+let g:vimrplugin_screenplugin = 1
+" Don't use conque shell if installed
+let vimrplugin_conqueplugin = 0

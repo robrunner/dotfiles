@@ -1,0 +1,90 @@
+#!/bin/bash
+
+ping -c 1 -W 1 192.168.1.6 > /dev/null
+
+kodiplaying=false
+clemplaying=false
+
+if [[ $? != 0 ]]
+then
+	echo "KODI not running"
+else
+	playerid=$(curl --user kodi:Ni3P5%Wp --header 'Content-Type: application/json' \
+		--data-binary '{ "id": 1, "jsonrpc": "2.0", "method": "Player.GetActivePlayers", "params": {} }' \
+		'http://192.168.1.6/jsonrpc' \
+		| sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep result)
+
+	kodiid="${playerid:$((${#playerid}-1)):1}"
+	if [[ $kodiid != 0 ]]
+	then
+		echo "KODI connected"
+	else
+		speed=$(curl --user kodi:Ni3P5%Wp --header 'Content-Type: application/json' \
+			--data-binary '{ "id": 1, "jsonrpc": "2.0", "method": "Player.GetProperties", "params": { "playerid": 0, "properties": ["speed"] } }' \
+			'http://192.168.1.6/jsonrpc' \
+			| sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep speed)
+		speed="${speed:$((${#speed}-1)):1}"
+		kodiplaying=true
+		if [[ $speed == 1 ]]
+		then
+			echo "> KODI running"
+		else
+			echo "KODI running"
+		fi
+		artist=$(curl --user kodi:Ni3P5%Wp --header 'Content-Type: application/json' \
+			--data-binary '{ "id": 1, "jsonrpc": "2.0", "method": "Player.GetItem", "params": { "playerid": 0, "properties": ["artist", "album", "title" ] } }' \
+			'http://192.168.1.6/jsonrpc' \
+			| sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep artist | sed 's/.*\["\([^]]*\)\"].*/\1/g')
+		album=$(curl --user kodi:Ni3P5%Wp --header 'Content-Type: application/json' \
+			--data-binary '{ "id": 1, "jsonrpc": "2.0", "method": "Player.GetItem", "params": { "playerid": 0, "properties": ["artist", "album", "title" ] } }' \
+			'http://192.168.1.6/jsonrpc' \
+			| sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep album | sed 's/.*\"\([^]]*\)\".*/\1/g')
+		title=$(curl --user kodi:Ni3P5%Wp --header 'Content-Type: application/json' \
+			--data-binary '{ "id": 1, "jsonrpc": "2.0", "method": "Player.GetItem", "params": { "playerid": 0, "properties": ["artist", "album", "title" ] } }' \
+			'http://192.168.1.6/jsonrpc' \
+			| sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep title | sed 's/.*\"\([^]]*\)\".*/\1/g')
+		kodiout=$title" - "$artist": "$album
+#		last=$(curl --user kodi:Ni3P5%Wp --header 'Content-Type: application/json' \
+#			--data-binary '{ "id": 1, "jsonrpc": "2.0", "method": "Playlist.GetProperties", "params": { "playlistid": 0, "properties": ["size"] } }' \
+#			'http://192.168.1.6/jsonrpc' \
+#			| sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | grep size | sed 's/.*"result":"size"://')
+#		echo $last
+	fi
+fi
+
+pid=$(pidof clementine)
+if [[ $pid > 0 ]]
+then
+	status=$(qdbus-qt4 org.mpris.MediaPlayer2.clementine /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus)
+	if [ $status == "Stopped" ]
+	then
+		echo "Clementine connected"
+	else
+		clemplaying=true
+		if [ $status == "Playing" ]
+		then
+			echo "> Clementine running"
+		else
+			echo "Clementine running"
+		fi
+		artist=$(qdbus-qt4 org.mpris.clementine /Player org.freedesktop.MediaPlayer.GetMetadata | grep artist: | sed 's/.*artist: //')
+		album=$(qdbus-qt4 org.mpris.clementine /Player org.freedesktop.MediaPlayer.GetMetadata | grep album: | sed 's/.*album: //')
+		title=$(qdbus-qt4 org.mpris.clementine /Player org.freedesktop.MediaPlayer.GetMetadata | grep title: | sed 's/.*title: //')
+		cur=$(qdbus-qt4 org.mpris.clementine /TrackList org.freedesktop.MediaPlayer.GetCurrentTrack)
+		cur=$((cur+1))
+		last=$(qdbus-qt4 org.mpris.clementine /TrackList org.freedesktop.MediaPlayer.GetLength)
+		clemout=$title" - "$artist": "$album
+		vol=$(qdbus-qt4 org.mpris.clementine /Player org.freedesktop.MediaPlayer.VolumeGet)
+	fi
+else
+	echo "Clementine not running"
+fi
+
+if $kodiplaying
+then
+	echo $kodiout
+elif $clemplaying
+then
+	echo $clemout
+	echo $cur"/"$last" - Volume: "$vol"%"
+fi
